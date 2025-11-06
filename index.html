@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clima </title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <i class="fas fa-cloud icon-logo"></i>
+                    <h1 class="logo-text">Clima</h1>
+                </div>
+                <button id="toggleSidebarBtn" class="btn-toggle-sidebar" title="Mostrar/Ocultar panel">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <aside class="sidebar" id="sidebar">
+                <div class="search-section">
+                    <div class="search-box">
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            class="search-input" 
+                            placeholder="Buscar ciudad..."
+                            autocomplete="off"
+                        >
+                        <button id="searchBtn" class="btn btn-primary btn-search" title="Buscar">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <button id="geolocateBtn" class="btn btn-secondary btn-geo" title="Obtener ubicación">
+                        <i class="fas fa-location-dot"></i>
+                    </button>
+                </div>
+
+                <div class="weather-panel">
+                    <div id="weatherInfo" class="weather-info hidden">
+                        <div class="weather-header">
+                            <div class="city-info">
+                                <h2 id="cityName" class="city-name">--</h2>
+                                <p id="countryCode" class="country-code">--</p>
+                            </div>
+                            <div class="temperature-badge">
+                                <span id="temperature" class="temp-value">--</span>
+                                <span class="temp-unit">°C</span>
+                            </div>
+                        </div>
+                        <div class="weather-description">
+                            <p id="description" class="desc-text">--</p>
+                            <p id="feelsLike" class="feels-like">Sensación: --°C</p>
+                        </div>
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-icon humidity-icon">
+                                    <i class="fas fa-droplet"></i>
+                                </div>
+                                <div class="metric-content">
+                                    <span class="metric-label">Humedad</span>
+                                    <span id="humidity" class="metric-value">--%</span>
+                                </div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-icon wind-icon">
+                                    <i class="fas fa-wind"></i>
+                                </div>
+                                <div class="metric-content">
+                                    <span class="metric-label">Viento</span>
+                                    <span id="windSpeed" class="metric-value">-- m/s</span>
+                                </div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-icon pressure-icon">
+                                    <i class="fas fa-gauge"></i>
+                                </div>
+                                <div class="metric-content">
+                                    <span class="metric-label">Presión</span>
+                                    <span id="pressure" class="metric-value">-- hPa</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="update-timestamp">
+                            <small id="lastUpdated">Actualizado hace poco</small>
+                        </div>
+                    </div>
+
+                    <div id="loadingState" class="state-container loading-state">
+                        <div class="spinner"></div>
+                        <p>Cargando datos climáticos...</p>
+                    </div>
+                    <div id="errorState" class="state-container error-state hidden">
+                        <div class="error-icon">
+                            <i class="fas fa-triangle-exclamation"></i>
+                        </div>
+                        <p id="errorMessage">Error al cargar los datos</p>
+                    </div>
+                    <div id="initialState" class="state-container initial-state">
+                        <div class="initial-icon">
+                            <i class="fas fa-map"></i>
+                        </div>
+                        <p>Busca una ciudad o usa tu ubicación</p>
+                    </div>
+                </div>
+            </aside>
+            <section class="map-container">
+                <div id="map" class="map"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
